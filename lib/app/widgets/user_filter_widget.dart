@@ -1,12 +1,13 @@
+import 'package:be_talent_test/app/widgets/app/text/title_text_app.dart';
 import 'package:flutter/material.dart';
 
-import '../models/user.dart';
+import '../models/employee_model.dart';
 import '../utils/filter_option_util.dart';
 import '../utils/format_util.dart';
 
 class UserFilterWidget extends StatefulWidget {
-  final Future<List<User>> users;
-  final Function(List<User>) onFiltered;
+  final Future<List<EmployeeModel>> users;
+  final Function(List<EmployeeModel>) onFiltered;
 
   const UserFilterWidget({
     super.key,
@@ -20,7 +21,7 @@ class UserFilterWidget extends StatefulWidget {
 
 class _UserFilterWidgetState extends State<UserFilterWidget> {
   TextEditingController searchController = TextEditingController();
-  List<User> filteredUsers = [];
+  List<EmployeeModel> filteredUsers = [];
   List<bool> filterSelections = [true, true, true]; // name, job, phone
 
   @override
@@ -40,7 +41,7 @@ class _UserFilterWidgetState extends State<UserFilterWidget> {
     });
   }
 
-  List<User> _filterUsers(String query, List<User> users) {
+  List<EmployeeModel> _filterUsers(String query, List<EmployeeModel> users) {
     if (query.isEmpty) {
       return [];
     } else {
@@ -74,18 +75,11 @@ class _UserFilterWidgetState extends State<UserFilterWidget> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Center(
-            child: Text(
-              "Filtros",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ),
+          title: const Center(child: TitleTextApp(text: 'Filtrar por')),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              const Divider(color: Colors.black),
               FilterOptionUtil(
                 label: 'Nome',
                 value: filterSelections[0],
@@ -121,7 +115,7 @@ class _UserFilterWidgetState extends State<UserFilterWidget> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text("Fechar"),
+              child: Text("Salvar"),
             ),
           ],
         );
@@ -147,10 +141,17 @@ class _UserFilterWidgetState extends State<UserFilterWidget> {
                 ),
               ),
             ),
-            IconButton(
-              icon: Icon(Icons.filter_list),
-              hoverColor: Colors.red,
-              onPressed: _openFilterDialog,
+            Container(
+              margin: const EdgeInsets.only(left: 16),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: IconButton(
+                icon: Icon(Icons.filter_list),
+                color: Colors.white,
+                onPressed: _openFilterDialog,
+              ),
             ),
           ],
         ),

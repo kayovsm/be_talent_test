@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class User {
+class EmployeeModel {
   final String id;
   final String name;
   final String job;
@@ -8,7 +8,7 @@ class User {
   final String phone;
   final String image;
 
-  User({
+  EmployeeModel({
     required this.id,
     required this.name,
     required this.job,
@@ -17,8 +17,8 @@ class User {
     required this.image,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory EmployeeModel.fromJson(Map<String, dynamic> json) {
+    return EmployeeModel(
       id: json['id'],
       name: utf8.decode(json['name'].toString().codeUnits),
       job: utf8.decode(json['job'].toString().codeUnits),

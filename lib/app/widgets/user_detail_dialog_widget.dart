@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../models/user.dart';
+import '../models/employee_model.dart';
 import '../utils/format_util.dart';
 
 class UserDetailsDialogWidget extends StatelessWidget {
-  final User user;
+  final EmployeeModel user;
 
   const UserDetailsDialogWidget({super.key, required this.user});
 

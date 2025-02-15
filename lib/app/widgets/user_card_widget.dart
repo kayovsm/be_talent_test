@@ -1,8 +1,10 @@
+import 'package:be_talent_test/app/widgets/app/text/description_text_app.dart';
 import 'package:flutter/material.dart';
-import '../models/user.dart';
+
+import '../models/employee_model.dart';
 
 class UserCardWidget extends StatelessWidget {
-  final User user;
+  final EmployeeModel user;
   final VoidCallback onTap;
 
   const UserCardWidget({
@@ -22,7 +24,7 @@ class UserCardWidget extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      title: Text(user.name),
+      title: DescriptionTextApp(text: user.name),
       onTap: onTap,
     );
   }
